@@ -30,13 +30,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(
+    navController: NavHostController,
+    onLoginSuccess: () -> Unit
+) {
     var TaiKhoan by remember { mutableStateOf("") }
     var matkhau by remember { mutableStateOf("") }
 
-    Column (
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp),
@@ -47,52 +51,27 @@ fun LoginScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         TextField(
             value = TaiKhoan,
-            onValueChange = {TaiKhoan=it},
+            onValueChange = { TaiKhoan = it },
             label = { Text("Tài khoản") }
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             value = matkhau,
-            onValueChange = {matkhau=it},
+            onValueChange = { matkhau = it },
             label = { Text("Mật khẩu") },
             visualTransformation = PasswordVisualTransformation()
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Button(onClick = {}) {
+        Button(onClick = {
+            // Giả lập đăng nhập thành công
+            onLoginSuccess()
+        }) {
             Text(text = "Đăng Nhập")
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Hoặc đăng nhập bằng ")
-        Row(modifier = Modifier
-            .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.Center
-        ) {
-            IconButton(onClick = {},
-                modifier = Modifier.size(32.dp)
-                    .background(color = Color.Blue)
-            ) {
-                Image(painter = painterResource(id = R.drawable.ic_facebook),
-                    contentDescription = "Facebook")
-            }
-            Spacer(modifier = Modifier.width(8.dp))
-            IconButton (onClick = {},
-                modifier = Modifier.size(32.dp)
-                    .background(color = Color.Red)
-            ) {
-
-                Image(painter = painterResource(id = R.drawable.ic_google),
-                    contentDescription = "Google"
-                )
-            }
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        TextButton(onClick = {}) {
-            Text("Quên mật khẩu?")
-        }
-        Spacer(modifier = Modifier.height(8.dp))
-        TextButton(onClick = {}) {
+        TextButton(onClick = { navController.navigate("Register") }) {
             Text("Chưa có tài khoản? Đăng ký")
         }
     }
 }
+
