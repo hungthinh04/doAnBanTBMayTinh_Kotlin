@@ -57,16 +57,18 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            var isLoggedIn by remember { mutableStateOf(false) } // Quản lý trạng thái đăng nhập
-            val navController = rememberNavController()
+//            var isLoggedIn by remember { mutableStateOf(false) } // Quản lý trạng thái đăng nhập
+//            val navController = rememberNavController()
+//
+//            NavigationComponent(
+//                navController = navController,
+//                isLoggedIn = isLoggedIn,
+//                onLoginSuccess = {
+//                    isLoggedIn = true // Cập nhật trạng thái khi đăng nhập thành công
+//                }
+//            )
 
-            NavigationComponent(
-                navController = navController,
-                isLoggedIn = isLoggedIn,
-                onLoginSuccess = {
-                    isLoggedIn = true // Cập nhật trạng thái khi đăng nhập thành công
-                }
-            )
+            NotificationScreen()
         }
     }
 }
