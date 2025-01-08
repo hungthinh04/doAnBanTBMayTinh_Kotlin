@@ -23,7 +23,7 @@ fun AccountScreen(navController: NavHostController) {
                 .padding(paddingValues),
             contentAlignment = Alignment.Center
         ) {
-            Text("Tài khoản của bố")
+            Text("Tài khoản của bạn")
         }
     }
 }
